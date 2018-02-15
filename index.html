@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ThirtyCraZyLow</title>
+  <script src="https://unpkg.com/vue"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+  <style>
+    .row::after {
+      content: "";
+      clear: both;
+      display: table;
+    }
+    [class*="col-"] {
+      float: left;
+      padding: 1px 15px;
+      height: 100%;
+    }
+    .col-1 {width: 8.33%;}
+    .col-2 {width: 16.66%;}
+    .col-3 {width: 25%;}
+    .col-4 {width: 33.33%;}
+    .col-5 {width: 41.66%;}
+    .col-6 {width: 50%;}
+    .col-7 {width: 58.33%;}
+    .col-8 {width: 66.66%;}
+    .col-9 {width: 75%;}
+    .col-10 {width: 83.33%;}
+    .col-11 {width: 91.66%;}
+    .col-12 {width: 100%;}
+
+    .header {
+      background-color: #4267B2;
+      height: 4.5rem;
+      padding-left: 0.5rem;
+    }
+    .header h2 {
+      font: Roboto;
+      color: white;
+    }
+
+    .page-body {
+      background-color: #E9EBEE;
+      min-height: 100vh;
+    }
+
+    .panel {
+      background-color: #FFFFFF;
+      border-radius: 10px;
+      margin: 0.5rem 0.125rem;
+    }
+    .panel .detail {
+      padding-left: 1rem;
+    }
+    .panel .detail p {
+      color: #919498;
+    }
+    .panel .profile-image {
+      width: 100%;
+      padding-top: 1rem;
+      border-top-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+    }
+    .panel .tab {
+      padding: 1rem 0 0 1rem;
+      /* border-bottom: 1px solid #E9EBEE; */
+    }
+    .panel .tab .tab-item {
+      border-top-left-radius: 10px;
+      background-color: #E9EBEE;
+    }
+    .panel .tab .tab-item .tab-item-active {
+      border-top: 1px solid #E9EBEE;
+      border-left: 1px solid #E9EBEE;
+      border-right: 1px solid #E9EBEE;
+      background-color: #FFFFFF;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div class="header">
+      <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+          <h2>ThirtyCraZyLow</h2>
+        </div>
+      </div>
+    </div>
+    <div class="row page-body">
+      <div class="col-2"></div>
+      <div class="col-8">
+        <div class="row">
+          <div class="col-3 panel">
+            <img class="profile-image" :src="profile.fbProImgUrl" alt="" @click="clickProfilePhoto">
+            <div class="row">
+              <div class="col-10 detail">
+                <h3>Woramate Jumroonsilp</h3>
+                <p><i class="fas fa-birthday-cake"></i> January 6, 1996</p>
+                <p><i class="fas fa-briefcase"></i> Part-time Software Engineer at Innovative Extremist</p>
+                <p><i class="fas fa-briefcase"></i> Former Software Engineer Internship at Innovative Extremist</p>
+                <p><i class="fas fa-briefcase"></i> Former Barista at Coffee Avenue</p>
+                <p><i class="fas fa-graduation-cap"></i> Studies Software and Knowledge Engineering at มหาวิทยาลัยเกษตรศาสตร์</p>
+                <p><i class="fas fa-graduation-cap"></i> Went to Satriwitthaya 2 School</p>
+                <p><i class="fas fa-home"></i> Bangkok, Thailand</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-8">
+            <div class="panel">
+              <div class="row tab">
+                <div v-for="item in tabs" class="col-3" :class="{ 'tab-item-active': selectedTab.name === item.name, 'tab-item': selectedTab.name !== item.name }" @click="selectedTab=item">
+                  <h3>{{ item.title }}</h3>
+                </div>
+              </div>
+              <div class="row" v-if="selectedTab.name==='interest'">
+                <div class="col-12">
+                  <h2>Photographer</h2>
+                  <iframe
+                    src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FWoramateJumroonsilpGalleries&tabs=timeline&width=500&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=1891074414497751"
+                    width="500"
+                    height="500"
+                    style="border:none;overflow:hidden"
+                    scrolling="no" frameborder="0" allowTransparency="true">
+                  </iframe>
+                  <blockquote
+                    class="instagram-media"
+                    data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/p/BesLpshB7NA/"
+                    data-instgrm-version="8"
+                    style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:658px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);">
+                    <div style="padding:8px;">
+                      <div style=" background:#F8F8F8; line-height:0; margin-top:40px; padding:37.5% 0; text-align:center; width:100%;">
+                        <div style="background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAsCAMAAAApWqozAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAMUExURczMzPf399fX1+bm5mzY9AMAAADiSURBVDjLvZXbEsMgCES5/P8/t9FuRVCRmU73JWlzosgSIIZURCjo/ad+EQJJB4Hv8BFt+IDpQoCx1wjOSBFhh2XssxEIYn3ulI/6MNReE07UIWJEv8UEOWDS88LY97kqyTliJKKtuYBbruAyVh5wOHiXmpi5we58Ek028czwyuQdLKPG1Bkb4NnM+VeAnfHqn1k4+GPT6uGQcvu2h2OVuIf/gWUFyy8OWEpdyZSa3aVCqpVoVvzZZ2VTnn2wU8qzVjDDetO90GSy9mVLqtgYSy231MxrY6I2gGqjrTY0L8fxCxfCBbhWrsYYAAAAAElFTkSuQmCC); display:block; height:44px; margin:0 auto -44px; position:relative; top:-22px; width:44px;"></div>
+                      </div>
+                      <p style=" margin:8px 0 0 0; padding:0 4px;">
+                        <a href="https://www.instagram.com/p/BesLpshB7NA/" style=" color:#000; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none; word-wrap:break-word;" target="_blank">Brightness #ThirtyGoSKETrip #p9plus</a>
+                      </p>
+                      <p style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;">A post shared by
+                        <a href="https://www.instagram.com/thirtycrazylow/" style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px;" target="_blank"> Woramate Jumroonsilp</a> (@thirtycrazylow) on
+                        <time style=" font-family:Arial,sans-serif; font-size:14px; line-height:17px;" datetime="2018-02-02T10:06:28+00:00">Feb 2, 2018 at 2:06am PST</time>
+                      </p>
+                    </div>
+                  </blockquote>
+                  <script async defer src="//www.instagram.com/embed.js"></script>
+                  <h2>Cycling</h2>
+                  <img width="75%" src="https://instagram.fbkk10-1.fna.fbcdn.net/vp/f371793ec0f18366bf788063f9c4f785/5B04C20A/t51.2885-15/e35/11267202_1616356901956942_387323822_n.jpg" alt="">
+                  <img width="75%" src="https://instagram.fbkk10-1.fna.fbcdn.net/vp/9d79a7e0ba57e93bf5ee21fb6a159ea2/5B243E9F/t51.2885-15/e15/10735059_1491376671124130_1572944899_n.jpg" alt="">
+                </div>
+              </div>
+              <div class="row" v-if="selectedTab.name==='hobbies'">
+                <div class="col-12">
+                  <h2>Sim Racing</h2>
+                  <img src="http://cdn.akamai.steamstatic.com/steam/apps/234630/ss_e191275fd5ac69d3e8ce9719a9ac45e4ff4a88d3.600x338.jpg?t=1470909633" alt="">
+                  <img src="http://cdn.akamai.steamstatic.com/steam/apps/234630/ss_342ec464dbec95300747ef79ed1e28f9dafb4ce8.600x338.jpg?t=1470909633" alt="">
+                </div>
+              </div>
+              <div class="row" v-if="selectedTab.name==='browserServer'">
+                <div class="col-11">
+                  <h2>Web Browser</h2>
+                  <p>Web browser is program that recieve url form user then fetch html and relavent style from Web Server via HTTP request, then redering with parser (html parser, css parser)</p>
+                  <h2>Web Server</h2>
+                  <p>On the software side, a web server includes several parts that control how web users access hosted files, at minimum an HTTP server. An HTTP server is a piece of software that understands URLs (web addresses) and HTTP (the protocol your browser uses to view webpages). It can be accessed through the domain names (like mozilla.org) of websites it stores, and delivers their content to the end-user's device.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        profile: {
+          fbProUrl: 'https://www.facebook.com/ThirtyCraZyLow',
+          fbProImgUrl: 'https://scontent.fbkk10-1.fna.fbcdn.net/v/t1.0-9/11903860_1156488091031865_5741466262102822082_n.jpg?oh=7a4043f16e139190813a8429715c6109&oe=5B1CE775'
+        },
+        selectedTab: {},
+        tabs: [
+          {
+            title: 'Interest',
+            name: 'interest'
+          },
+          {
+            title: 'Hobbies',
+            name: 'hobbies'
+          },
+          {
+            title: 'Browsers & Web Servers',
+            name: 'browserServer'
+          }
+        ]
+      },
+      created() {
+        this.selectedTab = this.tabs[0]
+      },
+      methods: {
+        clickProfilePhoto() {
+          window.location = this.profile.fbProImgUrl
+        }
+      }
+    })
+  </script>
+</body>
+</html>
